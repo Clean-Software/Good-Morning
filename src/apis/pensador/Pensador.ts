@@ -1,10 +1,10 @@
 // Adaptation of  solution operfildoluiz/pensador-api [https://github.com/operfildoluiz/pensador-api]
 
 import { outputResponseAPI, searchOptions } from "./interfaces";
-import fetch from "node-fetch";
-import slugify from "slugify";
-import * as cheerio from "cheerio";
-import iconv from "iconv-lite";
+const fetch = require("node-fetch");
+const slugify = require("slugify");
+const cheerio = require("cheerio");
+const iconv = require("iconv-lite");
 
 export default class PensadorAPI {
   readonly baseUrl: string;
@@ -56,24 +56,8 @@ export default class PensadorAPI {
     const $ = cheerio.load(htmlContent);
     $(".thought-card").each(function () {
       phrases.push({
-        author: $(this)
-          .find("a")
-          .first()
-          .text()
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .replace(/\0/g, "")
-          .replace(/(\r\n|\n|\r)/gm, "")
-          .replace(/[^\x00-\x7F]/g, ""),
-        text: $(this)
-          .find("p")
-          .first()
-          .text()
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .replace(/\0/g, "")
-          .replace(/\r?\n|\r/g, "")
-          .replace(/[^\x00-\x7F]/g, ""),
+        author: $(this).find("a").first().text(),
+        text: $(this).find("p").first().text().replace(/\n/g, ""),
       });
     });
     return phrases;
