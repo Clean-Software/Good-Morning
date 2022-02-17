@@ -56,8 +56,24 @@ export default class PensadorAPI {
     const $ = cheerio.load(htmlContent);
     $(".thought-card").each(function () {
       phrases.push({
-        author: $(this).find("a").first().text().toString(),
-        text: $(this).find("p").first().text().replace(/\n/g, "").toString(),
+        author: $(this)
+          .find("a")
+          .first()
+          .text()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/\0/g, "")
+          .replace(/(\r\n|\n|\r)/gm, "")
+          .replace(/[^\x00-\x7F]/g, ""),
+        text: $(this)
+          .find("p")
+          .first()
+          .text()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/\0/g, "")
+          .replace(/\r?\n|\r/g, "")
+          .replace(/[^\x00-\x7F]/g, ""),
       });
     });
     return phrases;

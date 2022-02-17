@@ -1,13 +1,17 @@
 import { Request, Response } from "express";
 import PensadorAPI from "./Pensador";
-import randomInt from "../../utils/getRandomInt";
+import { getRandomInt, getRandomPhrase } from "../../utils";
 
 export const getPhrases = async (_request: Request, response: Response) => {
-  const page = randomInt(1, 2193);
-  const term = "motivacional";
-  const pensador = new PensadorAPI("https://www.pensador.com/", { term, page });
-  const phrases = await pensador.getPhrases();
+  const pensador = new PensadorAPI("https://www.pensador.com/", {
+    term: "motivacional",
+    page: getRandomInt(1, 2193),
+  });
 
-  const sorted = randomInt(0, phrases.length - 1);
-  response.json(phrases[sorted]);
+  let selectedPhrase;
+  do {
+    selectedPhrase = getRandomPhrase(await pensador.getPhrases());
+  } while (!selectedPhrase);
+
+  response.json(selectedPhrase);
 };
