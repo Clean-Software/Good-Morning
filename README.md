@@ -1,2 +1,2 @@
 # Good-Morning
-Um projeto para dizer bom dia ou boa noite com frases motivacionais.
+Um webhook para dizer bom dia, boa tarde ou boa noite com frases motivacionais.
