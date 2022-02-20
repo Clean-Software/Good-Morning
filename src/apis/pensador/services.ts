@@ -1,6 +1,6 @@
 // Adaptation of  solution operfildoluiz/pensador-api [https://github.com/operfildoluiz/pensador-api]
 
-import { outputResponseAPI, searchOptions } from "./interfaces";
+import { IOutputResponseAPI, IsearchOptions } from "./interfaces";
 const fetch = require("node-fetch");
 const slugify = require("slugify");
 const cheerio = require("cheerio");
@@ -8,9 +8,9 @@ const iconv = require("iconv-lite");
 
 export default class PensadorAPI {
   readonly baseUrl: string;
-  readonly options: searchOptions;
+  readonly options: IsearchOptions;
 
-  constructor(baseUrl: string, options: searchOptions) {
+  constructor(baseUrl: string, options: IsearchOptions) {
     this.baseUrl = baseUrl;
     this.options = options;
   }
@@ -40,7 +40,7 @@ export default class PensadorAPI {
    * @param page pagina da busca
    * @returns conteudo da página(HTML)
    */
-  async fetchPage(searchTerm: string, page = 1) {
+  async fetchPage(searchTerm: string, page = 1): Promise<string> {
     try {
       const response = await fetch(`${this.baseUrl}/${searchTerm}/${page}`);
       const arrayBuffer = await response.arrayBuffer();
@@ -54,8 +54,8 @@ export default class PensadorAPI {
    * @param htmlContent conteudo da página(HTML)
    * @returns frases da página
    */
-  async extractContent(htmlContent: any) {
-    const phrases: outputResponseAPI[] = [];
+  async extractContent(htmlContent: any): Promise<IOutputResponseAPI[]> {
+    const phrases: IOutputResponseAPI[] = [];
     try {
       const $ = cheerio.load(htmlContent);
       $(".thought-card").each(function () {

@@ -1,6 +1,8 @@
-import { outputResponseAPI } from "../apis/pensador/interfaces";
+import { IOutputResponseAPI } from "../apis/pensador/interfaces";
 
-export const getRandomPhrase = (phrases: outputResponseAPI[]) => {
+export const getRandomPhrase = (
+  phrases: IOutputResponseAPI[]
+): IOutputResponseAPI | boolean => {
   const conditions = ["/", "\\", "<", ">", "|", "'\\", "'/", '"\\'];
 
   for (var value of phrases) {

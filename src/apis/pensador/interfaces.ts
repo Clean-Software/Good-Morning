@@ -1,11 +1,11 @@
-interface outputResponseAPI {
+interface IOutputResponseAPI {
   author: string;
   text: string;
 }
 
-interface searchOptions {
+interface IsearchOptions {
   term: string | "motivacional";
   page: number | 1;
 }
 
-export { outputResponseAPI, searchOptions };
+export { IOutputResponseAPI, IsearchOptions };
