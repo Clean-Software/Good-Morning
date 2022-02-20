@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Um projeto para dizer bom dia ou boa noite com frases motivacionais.",
   "main": "./src/index.ts",
-  "type": "module",
   "scripts": {
     "build": "tsc && node dist/index.js",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules ./src/index.ts",
