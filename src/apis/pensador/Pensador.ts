@@ -26,10 +26,13 @@ export default class PensadorAPI {
       remove: /[*+~.()'"!:@]/g,
       lower: true,
     });
+    try {
+      const contentPage = await this.fetchPage(searchTerm, page);
 
-    const contentPage = await this.fetchPage(searchTerm, page);
-
-    return await this.extractContent(contentPage);
+      return await this.extractContent(contentPage);
+    } catch (err) {
+      throw err;
+    }
   }
   /**
    *
@@ -53,15 +56,19 @@ export default class PensadorAPI {
    */
   async extractContent(htmlContent: any) {
     const phrases: outputResponseAPI[] = [];
-    const $ = cheerio.load(htmlContent);
-    $(".thought-card").each(function () {
-      phrases.push({
-        //@ts-ignore
-        author: $(this).find("a").first().text(),
-        //@ts-ignore
-        text: $(this).find("p").first().text().replace(/\n/g, ""),
+    try {
+      const $ = cheerio.load(htmlContent);
+      $(".thought-card").each(function () {
+        phrases.push({
+          //@ts-ignore
+          author: $(this).find("a").first().text(),
+          //@ts-ignore
+          text: $(this).find("p").first().text().replace(/\n/g, ""),
+        });
       });
-    });
-    return phrases;
+      return phrases;
+    } catch (err) {
+      throw err;
+    }
   }
 }

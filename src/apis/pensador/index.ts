@@ -7,11 +7,13 @@ export const getPhrases = async (_request: Request, response: Response) => {
     term: "motivacional",
     page: getRandomInt(1, 2193),
   });
-
-  let selectedPhrase;
-  do {
-    selectedPhrase = getRandomPhrase(await pensador.getPhrases());
-  } while (!selectedPhrase);
-
-  response.json(selectedPhrase);
+  try {
+    let selectedPhrase;
+    do {
+      selectedPhrase = getRandomPhrase(await pensador.getPhrases());
+    } while (!selectedPhrase);
+    response.json("selectedPhrase");
+  } catch (error) {
+    response.status(500).json({ error });
+  }
 };
