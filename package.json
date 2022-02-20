@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules ./src/index.ts",
-    "start": "node dist/src/server.js"
+    "start": "tsc && node dist/index.js"
   },
   "repository": {
     "type": "git",
