@@ -1,0 +1,62 @@
+Arguments: 
+  /home/kovacs/.nvm/versions/node/v16.13.2/bin/node /home/kovacs/.nvm/versions/node/v16.13.2/bin/yarn
+
+PATH: 
+  /home/kovacs/.nvm/versions/node/v16.13.2/bin:/home/kovacs/java/jdk17/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  16.13.2
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: getaddrinfo EAI_AGAIN registry.yarnpkg.com
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26)
+
+npm manifest: 
+  {
+    "name": "Good-Morning",
+    "version": "1.0.0",
+    "description": "Um projeto para dizer bom dia ou boa noite com frases motivacionais.",
+    "main": "./build/index.js",
+    "license": "MIT",
+    "scripts": {
+      "build": "tsc",
+      "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules ./src/index.ts",
+      "start": "node ./build/index.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Clean-Software/Good-Morning.git"
+    },
+    "keywords": [],
+    "author": "",
+    "bugs": {
+      "url": "https://github.com/Clean-Software/Good-Morning/issues"
+    },
+    "homepage": "https://github.com/Clean-Software/Good-Morning#readme",
+    "dependencies": {
+      "express": "^4.17.2",
+      "pensador-api": "^1.0.0"
+    },
+    "devDependencies": {
+      "@types/express": "^4.17.13",
+      "@types/node-fetch": "^2.6.1",
+      "cheerio": "^1.0.0-rc.10",
+      "iconv-lite": "^0.6.3",
+      "slugify": "^1.6.5",
+      "ts-node-dev": "^1.1.8",
+      "typescript": "^4.5.5",
+      "uglify-js": "^3.15.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
