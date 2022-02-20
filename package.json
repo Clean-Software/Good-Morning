@@ -2,11 +2,12 @@
   "name": "Good-Morning",
   "version": "1.0.0",
   "description": "Um projeto para dizer bom dia ou boa noite com frases motivacionais.",
-  "main": "./dist/index.js",
+  "main": "./build/index.js",
+  "license": "MIT",
   "scripts": {
     "build": "tsc --project ./",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules ./src/index.ts",
-    "start": "node dist/index.js"
+    "start": "node ./build/index.js"
   },
   "repository": {
     "type": "git",
@@ -14,7 +15,6 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Clean-Software/Good-Morning/issues"
   },

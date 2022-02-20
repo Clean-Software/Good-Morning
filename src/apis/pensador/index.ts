@@ -12,7 +12,7 @@ export const getPhrases = async (_request: Request, response: Response) => {
     do {
       selectedPhrase = getRandomPhrase(await pensador.getPhrases());
     } while (!selectedPhrase);
-    response.json("selectedPhrase");
+    response.json(selectedPhrase);
   } catch (error) {
     response.status(500).json({ error });
   }
