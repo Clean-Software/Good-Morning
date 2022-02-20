@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import PensadorAPI from "./Pensador";
+import PensadorAPI from "./services";
 import { getRandomInt, getRandomPhrase } from "../../utils";
 
 export const getPhrases = async (_request: Request, response: Response) => {
