@@ -5,7 +5,7 @@
   "main": "./build/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc --project ./",
+    "build": "tsc",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules ./src/index.ts",
     "start": "node ./build/index.js"
   },
