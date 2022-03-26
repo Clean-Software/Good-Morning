@@ -1,7 +1,7 @@
 import PensadorAPI from "./services";
 import { IOutputResponseAPI } from "./interfaces";
 import { Request, Response } from "express";
-import { getRandomInt, getRandomPhrase } from "../../utils";
+import { getRandomInt } from "../../utils";
 
 export const getPhrases = async (_request: Request, response: Response) => {
   const pensador = new PensadorAPI("https://www.pensador.com/", {
@@ -9,10 +9,8 @@ export const getPhrases = async (_request: Request, response: Response) => {
     page: getRandomInt(1, 2193),
   });
   try {
-    let selectedPhrase: IOutputResponseAPI | boolean;
-    do {
-      selectedPhrase = getRandomPhrase(await pensador.getPhrases());
-    } while (!selectedPhrase);
+    const phrases = (await pensador.getPhrases()) as IOutputResponseAPI[];
+    const selectedPhrase = phrases[getRandomInt(0, 10)];
     response.json(selectedPhrase);
   } catch (error) {
     response.status(500).json({ error });
