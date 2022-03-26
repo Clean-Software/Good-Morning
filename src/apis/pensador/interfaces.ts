@@ -4,8 +4,8 @@ interface IOutputResponseAPI {
 }
 
 interface IsearchOptions {
-  term: string | "motivacional";
-  page: number | 1;
+  term: string;
+  page: number;
 }
 
 export { IOutputResponseAPI, IsearchOptions };
