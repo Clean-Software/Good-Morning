@@ -1,10 +1,10 @@
 // Adaptation of  solution operfildoluiz/pensador-api [https://github.com/operfildoluiz/pensador-api]
 
 import { IOutputResponseAPI, IsearchOptions } from "./interfaces";
-const fetch = require("node-fetch");
-const slugify = require("slugify");
+import fetch from "node-fetch";
+import slugify from "slugify";
 import * as cheerio from "cheerio";
-const iconv = require("iconv-lite");
+import { decode } from "iconv-lite";
 
 export default class PensadorAPI {
   readonly baseUrl: string;
@@ -45,7 +45,7 @@ export default class PensadorAPI {
       const url = `${this.baseUrl}/${searchTerm}/${page}`;
       const response = await fetch(url);
       const arrayBuffer = await response.arrayBuffer();
-      return iconv.decode(Buffer.from(arrayBuffer), "utf-8").toString();
+      return decode(Buffer.from(arrayBuffer), "utf-8").toString();
     } catch (err) {
       throw err;
     }
