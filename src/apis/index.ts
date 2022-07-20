@@ -1,4 +1,4 @@
-import { Express, Request, Response } from "express";
+import { Express } from "express";
 import { getPhrases } from "./pensador/routes";
 
 export default function setUpRoutes(app: Express) {
