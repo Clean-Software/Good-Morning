@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 import { getRandomInt } from "../../utils";
 
 export const getPhrases = async (_request: Request, response: Response) => {
-  const pensador = new PensadorAPI("https://www.pensador.com/", {
+  const pensador = new PensadorAPI("https://www.pensador.com", {
     term: "motivacional",
     page: getRandomInt(1, 2193),
   });
