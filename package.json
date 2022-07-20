@@ -20,8 +20,7 @@
   },
   "homepage": "https://github.com/Clean-Software/Good-Morning#readme",
   "dependencies": {
-    "express": "^4.17.2",
-    "pensador-api": "^1.0.0"
+    "express": "^4.17.2"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",

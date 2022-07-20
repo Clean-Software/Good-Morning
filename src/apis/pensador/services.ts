@@ -3,7 +3,7 @@
 import { IOutputResponseAPI, IsearchOptions } from "./interfaces";
 const fetch = require("node-fetch");
 const slugify = require("slugify");
-const cheerio = require("cheerio");
+import * as cheerio from "cheerio";
 const iconv = require("iconv-lite");
 
 export default class PensadorAPI {
@@ -42,7 +42,8 @@ export default class PensadorAPI {
    */
   async fetchPage(searchTerm: string, page = 1): Promise<string> {
     try {
-      const response = await fetch(`${this.baseUrl}/${searchTerm}/${page}`);
+      const url = `${this.baseUrl}/${searchTerm}/${page}`;
+      const response = await fetch(url);
       const arrayBuffer = await response.arrayBuffer();
       return iconv.decode(Buffer.from(arrayBuffer), "utf-8").toString();
     } catch (err) {
