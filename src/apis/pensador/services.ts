@@ -3,7 +3,7 @@
 import { IOutputResponseAPI, IsearchOptions } from "./interfaces";
 const fetch = require("node-fetch");
 const slugify = require("slugify");
-const cheerio = require("cheerio");
+import * as cheerio from "cheerio";
 const iconv = require("iconv-lite");
 
 export default class PensadorAPI {
