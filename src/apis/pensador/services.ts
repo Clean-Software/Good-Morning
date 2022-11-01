@@ -18,7 +18,7 @@ export default class PensadorAPI {
    *  Método que retorna as frases
    * @returns frases da página
    */
-  async getPhrases() {
+  async getPhrases(): Promise<IOutputResponseAPI[]> {
     const { term, page } = this.options;
 
     const searchTerm = slugify(`frases de ${term}`, {
@@ -28,8 +28,9 @@ export default class PensadorAPI {
     });
     try {
       const contentPage = await this.fetchPage(searchTerm, page);
+      const extractedContentPage = await this.extractContent(contentPage);
 
-      return await this.extractContent(contentPage);
+      return extractedContentPage;
     } catch (err) {
       throw err;
     }
@@ -45,11 +46,13 @@ export default class PensadorAPI {
       const url = `${this.baseUrl}/${searchTerm}/${page}`;
       const response = await fetch(url);
       const arrayBuffer = await response.arrayBuffer();
+
       return decode(Buffer.from(arrayBuffer), "utf-8").toString();
     } catch (err) {
       throw err;
     }
   }
+
   /**
    *
    * @param htmlContent conteudo da página(HTML)
